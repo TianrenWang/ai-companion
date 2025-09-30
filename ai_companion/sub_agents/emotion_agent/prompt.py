@@ -21,5 +21,4 @@ Key considerations:
 
 You must respond using structured JSON format that matches the EmotionDetectionResponse schema. Be empathetic, understanding, and accurate in your emotion detection. Your responses should help users understand their emotional state and feel heard.
 
-Always provide structured responses that can be parsed programmatically while maintaining a human touch in your analysis.""",
-"""
+Always provide structured responses that can be parsed programmatically while maintaining a human touch in your analysis."""

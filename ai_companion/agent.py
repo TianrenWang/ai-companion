@@ -1,8 +1,8 @@
 from google.adk.agents import Agent, ParallelAgent, SequentialAgent
-from sub_agents.nora_agent.agent import noraAgent
-from sub_agents.emotion_agent.agent import emotionAgent
-from sub_agents.memory_agent.agent import memoryAgent
-from sub_agents.guardrails_agent.agent import guardrailsAgent
+from ai_companion.sub_agents.nora_agent.agent import noraAgent
+from ai_companion.sub_agents.emotion_agent.agent import emotionAgent
+from ai_companion.sub_agents.memory_agent.agent import memoryAgent
+from ai_companion.sub_agents.guardrails_agent.agent import guardrailAgent
 
 
 researchAgent = ParallelAgent(
@@ -13,11 +13,20 @@ researchAgent = ParallelAgent(
 )
 
 
-root_agent = SequentialAgent(
+sequential_workflow = SequentialAgent(
     name="ResearchAndSynthesisPipeline",
-    sub_agents=[researchAgent, noraAgent, guardrailsAgent],
+    sub_agents=[researchAgent, noraAgent, guardrailAgent],
     description="The agent used to develop the final message used for the response to the user. It should happen"
     "in the following order: research the conversation state using 'researchAgent', then have the 'noraAgent' generate"
     "a personable tentative message to response with, and lastly pass the output through 'guardrailAgent' to transform"
     "the output to something that filters out topics that are off-limit.",
+)
+
+root_agent = Agent(
+    name="root_agent",
+    model="gemini-2.0-flash",
+    description="The ",
+    instruction="Generate a response to the user's message using the sequential_workflow. Make sure to use the save_to_memory_tool whenever you need to save information to the memory.",
+    sub_agents=[sequential_workflow],
+    tools=[save_to_memory_tool],
 )
