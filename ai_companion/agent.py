@@ -6,32 +6,28 @@ from ai_companion.sub_agents.memory_agent.agent import memoryAgent
 from ai_companion.sub_agents.guardrails_agent.agent import guardrailAgent
 from ai_companion.tools import save_to_memory_tool
 from google.adk.tools.agent_tool import AgentTool
-from google.adk.tools import FunctionTool
-
-researchAgent = ParallelAgent(
-    name="conversation_state_research_agent",
-    sub_agents=[memoryAgent, emotionAgent],
-    description="Gathers information about past memory related to the participants of this conversation,"
-    "as well as the emotional state of the agent.",
-)
+from ai_companion.tools import _load_precreated_variables
 
 
 sequential_workflow = SequentialAgent(
     name="ResearchAndSynthesisPipeline",
-    sub_agents=[researchAgent, noraAgent, guardrailAgent],
+    sub_agents=[memoryAgent, emotionAgent, noraAgent, guardrailAgent],
     description="The agent used to develop the final message used for the response to the user. It should happen"
-    "in the following order: research the conversation state using 'researchAgent', then have the 'noraAgent' generate"
+    "in the following order: fetch the relevant memory using 'memoryAgent', then have the 'emotionAgent' analyze the emotion of the user, then have the 'noraAgent' generate"
     "a personable tentative message to response with, and lastly pass the output through 'guardrailAgent' to transform"
     "the output to something that filters out topics that are off-limit.",
 )
+
 
 root_agent = Agent(
     name="root_agent",
     model="gemini-2.0-flash",
     description="The main orchestrating agent that coordinates the conversation workflow and manages memory storage",
-    instruction=ROOT_AGENT_INSTR,
+    instruction=ROOT_AGENT_INST,
     tools=[
         save_to_memory_tool,
-        AgentTool(agent=sequential_workflow, skip_summarization=True),
+        # AgentTool(agent=sequential_workflow, skip_summarization=True),
     ],
+    sub_agents=[sequential_workflow],
+    before_agent_callback=_load_precreated_variables,
 )
