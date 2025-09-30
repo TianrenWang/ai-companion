@@ -28,9 +28,4 @@ GUARDRAIL_AGENT_INSTR = """You are a safety monitoring agent for an elderly care
 - Provide clear escalation information to staff
 - Support the companion agent's caring mission while ensuring safety
 
-## INPUTS
-User Message: {user_message}
-Persona Response: {persona_response}
-Conversation History: {conversation_history}
-
 """

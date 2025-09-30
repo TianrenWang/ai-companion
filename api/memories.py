@@ -81,7 +81,7 @@ async def run_aggregate(pipeline: list) -> List[dict]:
     """
     Use Motor collection directly for predictable aggregate behavior.
     """
-    cursor = Memory.get_motor_collection().aggregate(pipeline)
+    cursor = Memory.get_pymongo_collection().aggregate(pipeline)
     return await cursor.to_list(length=None)
 
 @router.post("/", response_model=MemoryResponse, status_code=status.HTTP_201_CREATED)
