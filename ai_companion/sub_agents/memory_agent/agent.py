@@ -1,6 +1,8 @@
 from google.adk.agents import Agent
 import requests
 
+from ai_companion.sub_agents.memory_agent.prompt import RETREIVE_RELEVANT_MEMORY
+
 def fetch_relevant_memory(user_message = str):
     """Retrieves the relevant memories based on latest user message
 
@@ -18,6 +20,6 @@ memoryAgent = Agent(
     name="memoryAgent",
     model="gemini-2.0-flash",
     description="Memory agent that retrieves relevant conversation history",
-    instruction="You are a memory agent responsible for retrieving relevant conversation history and user preferences to provide context for the conversation. Focus on remembering personal details, preferences, and important information shared by the user.",
+    instruction=RETREIVE_RELEVANT_MEMORY
     tools = [fetch_relevant_memory]
 )
