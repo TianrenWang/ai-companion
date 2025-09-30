@@ -2,7 +2,7 @@ from google.adk.agents import Agent, ParallelAgent, SequentialAgent
 from sub_agents.nora_agent.agent import noraAgent
 from sub_agents.emotion_agent.agent import emotionAgent
 from sub_agents.memory_agent.agent import memoryAgent
-from sub_agents.guardrail_agent.agent import guardrailAgent
+from sub_agents.guardrails_agent.agent import guardrailsAgent
 
 
 researchAgent = ParallelAgent(
@@ -21,4 +21,3 @@ root_agent = SequentialAgent(
     "a personable tentative message to response with, and lastly pass the output through 'guardrailAgent' to transform"
     "the output to something that filters out topics that are off-limit.",
 )
-
