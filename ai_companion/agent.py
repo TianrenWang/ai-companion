@@ -15,7 +15,7 @@ researchAgent = ParallelAgent(
 
 root_agent = SequentialAgent(
     name="ResearchAndSynthesisPipeline",
-    sub_agents=[researchAgent, noraAgent, guardrailAgent],
+    sub_agents=[researchAgent, noraAgent, guardrailsAgent],
     description="The agent used to develop the final message used for the response to the user. It should happen"
     "in the following order: research the conversation state using 'researchAgent', then have the 'noraAgent' generate"
     "a personable tentative message to response with, and lastly pass the output through 'guardrailAgent' to transform"
