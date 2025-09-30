@@ -15,7 +15,7 @@ def fetch_relevant_memory(user_message: str):
         relevant memory: string of relevant memory
     """
     print(user_message)
-    return "No memory found"
+    return "No relevant information found"
 
 
 fetch_relevant_memory_tool = FunctionTool(
@@ -27,5 +27,5 @@ memoryAgent = Agent(
     model="gemini-2.0-flash",
     description="Memory agent that retrieves relevant conversation history",
     instruction=RETREIVE_RELEVANT_MEMORY,
-    tools=[fetch_relevant_memory_tool],
+    tools = [fetch_relevant_memory_tool]
 )

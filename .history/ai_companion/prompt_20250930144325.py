@@ -1,5 +1,5 @@
-ROOT_AGENT_INST = """
-Generate a response to the user's message using the sequential_workflow.
+
+ROOT_AGENT_INSTR = """Generate a response to the user's message using the sequential_workflow.
 
 Always evaluate whether the user’s message contains coherent memory worth storing — information that a real human conversational partner would naturally remember to build long-term rapport. 
 
@@ -13,4 +13,3 @@ This includes:
     - If no coherent memory is present, proceed without saving.
 
 Ensure responses remain empathetic, natural, and in line with Jane’s persona. Always weave relevant retrieved memories into replies when appropriate to simulate true continuity.
-"""

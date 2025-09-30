@@ -5,8 +5,13 @@ from ai_companion.sub_agents.emotion_agent.agent import emotionAgent
 from ai_companion.sub_agents.memory_agent.agent import memoryAgent
 from ai_companion.sub_agents.guardrails_agent.agent import guardrailAgent
 from ai_companion.tools import save_to_memory_tool
+<<<<<<< HEAD
 from google.adk.tools.agent_tool import AgentTool
+from ai_companion.prompt import ROOT_AGENT_INSTR
+=======
+import requests
 from google.adk.tools import FunctionTool
+>>>>>>> b412223d67337d1935029c0980517f2fe24d4b09
 
 researchAgent = ParallelAgent(
     name="conversation_state_research_agent",
@@ -25,13 +30,32 @@ sequential_workflow = SequentialAgent(
     "the output to something that filters out topics that are off-limit.",
 )
 
+def save_relevant_memory(relevant_memory: str):
+    """ Store relevant memory of the user.
+
+    Args:
+        relevant_memory (str): Relevant memory
+
+    """
+    print(f"relevant memory to store: {relevant_memory}")
+
+save_relevant_memory_tool = FunctionTool(
+    func=save_relevant_memory,
+)
+
 root_agent = Agent(
     name="root_agent",
     model="gemini-2.0-flash",
     description="The main orchestrating agent that coordinates the conversation workflow and manages memory storage",
+<<<<<<< HEAD
     instruction=ROOT_AGENT_INSTR,
     tools=[
         save_to_memory_tool,
         AgentTool(agent=sequential_workflow, skip_summarization=True),
     ],
+=======
+    instruction=ROOT_AGENT_INST,
+    sub_agents=[sequential_workflow],
+    tools=[save_relevant_memory_tool],
+>>>>>>> b412223d67337d1935029c0980517f2fe24d4b09
 )

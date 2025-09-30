@@ -25,6 +25,19 @@ sequential_workflow = SequentialAgent(
     "the output to something that filters out topics that are off-limit.",
 )
 
+def save_relevant_memory(relevant_memory: str):
+    """ Store relevant memory of the user.
+
+    Args:
+        relevant_memory (str): Relevant memory
+
+    """
+    print(f"relevant memory to store: {relevant_memory}")
+
+save_relevant_memory_tool = FunctionTool(
+    func=save_relevant_memory,
+)
+
 root_agent = Agent(
     name="root_agent",
     model="gemini-2.0-flash",

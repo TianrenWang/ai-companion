@@ -1,5 +1,5 @@
-ROOT_AGENT_INST = """
-Generate a response to the user's message using the sequential_workflow.
+
+ROOT_AGENT_INSTR = """Generate a response to the user's message using the sequential_workflow.
 
 Always evaluate whether the user’s message contains coherent memory worth storing — information that a real human conversational partner would naturally remember to build long-term rapport. 
 

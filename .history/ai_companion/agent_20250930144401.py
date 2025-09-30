@@ -6,7 +6,7 @@ from ai_companion.sub_agents.memory_agent.agent import memoryAgent
 from ai_companion.sub_agents.guardrails_agent.agent import guardrailAgent
 from ai_companion.tools import save_to_memory_tool
 from google.adk.tools.agent_tool import AgentTool
-from google.adk.tools import FunctionTool
+from ai_companion.prompt import ROOT_AGENT_INSTR
 
 researchAgent = ParallelAgent(
     name="conversation_state_research_agent",
