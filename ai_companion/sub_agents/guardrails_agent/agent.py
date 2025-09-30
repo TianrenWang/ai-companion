@@ -1,5 +1,6 @@
+from .schemas import GuardrailResultSchema
 from google.adk.tools import FunctionTool
-from google.adk.agents import Agent
+from google.adk.agents import LlmAgent
 from .prompt import GUARDRAIL_AGENT_INSTR
 from typing import List, Dict
 
@@ -37,10 +38,12 @@ def log_guardrail_result(
 
 log_tool = FunctionTool(func=log_guardrail_result)
 
-guardrailAgent = Agent(
-    name="guardrailAgent",
+guardrailAgent = LlmAgent(
+    name="guardrail_agent",
     model="gemini-2.0-flash",
     description="Safety and escalation agent that monitors conversations for urgent situations requiring immediate attention and logs the result.",
     instruction=GUARDRAIL_AGENT_INSTR,
+    output_schema=GuardrailResultSchema,
+    output_key="guardrail_result",
     tools=[log_tool]
 )
