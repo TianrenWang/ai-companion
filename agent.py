@@ -1,19 +1,10 @@
 from google.adk.agents import Agent, ParallelAgent, SequentialAgent
+from sub_agents.nora_agent.agent import noraAgent
+from sub_agents.emotion_agent.agent import emotionAgent
+from sub_agents.memory_agent.agent import memoryAgent
+from sub_agents.guardrail_agent.agent import guardrailAgent
 
 
-memoryAgent = Agent(
-    name="memoryAgent",
-    model="",
-    description="",
-    instruction="",
-)
-
-emotionAgent = Agent(
-    name="emotionAgent",
-    model="",
-    description="",
-    instruction="",
-)
 
 researchAgent = ParallelAgent(
     name="conversation_state_research_agent",
@@ -22,20 +13,6 @@ researchAgent = ParallelAgent(
     "as well as the emotional state of the agent.",
 )
 
-
-guardrailAgent = Agent(
-    name="guardrailAgent",
-    model="",
-    description="",
-    instruction="",
-)
-
-noraAgent = Agent(
-    name="noraAgent",
-    model="",
-    description="",
-    instruction="",
-)
 
 messageDevelopmentAgent = SequentialAgent(
     name="ResearchAndSynthesisPipeline",
