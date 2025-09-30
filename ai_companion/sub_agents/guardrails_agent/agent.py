@@ -42,5 +42,5 @@ guardrailAgent = Agent(
     model="gemini-2.0-flash",
     description="Safety and escalation agent that monitors conversations for urgent situations requiring immediate attention and logs the result.",
     instruction=GUARDRAIL_AGENT_INSTR,
-    tools=[log_tool] # Use the new logging tool
+    tools=[log_tool]
 )
