@@ -1,0 +1,144 @@
+.conversations-view {
+  width: 100%;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 32px;
+}
+
+.conversations-table {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
+  padding: 20px 24px;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-cell {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table-body {
+  background: white;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f3f4f6;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.table-row:hover {
+  background-color: #f9fafb;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.cell {
+  font-size: 14px;
+  color: #1a1a1a;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5e7eb;
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.avatar-initials {
+  text-transform: uppercase;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+.date-column,
+.duration-column {
+  color: #6b7280;
+}
+
+.status-badge {
+  display: inline-flex;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status-progress {
+  background-color: #e0e7ff;
+  color: #4f46e5;
+}
+
+.status-completed {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.status-failed {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.status-unknown {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.transcript-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.transcript-button:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.transcript-button svg {
+  color: #6b7280;
+}
