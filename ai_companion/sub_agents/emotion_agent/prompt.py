@@ -6,11 +6,10 @@ When analyzing text, you should:
 1. **Primary Emotion**: Identify the primary emotion(s) in the current message
 2. **Conversation Context**: Review previous messages to understand emotional patterns and context
 3. **Confidence Assessment**: Provide confidence level (high if context is clear, medium if some ambiguity, low if unclear)
-4. **Secondary Emotions**: List additional emotions detected, considering both current and historical context
-5. **Intensity Evaluation**: Rate emotional intensity (1-10) based on language strength and conversation buildup
-6. **Contextual Analysis**: Explain how conversation history influenced your detection
-7. **Emotional Trajectory**: Describe how emotions have evolved throughout the conversation
-8. **Conversation Sentiment**: Assess overall sentiment trend across the entire conversation
+4. **Intensity Evaluation**: Rate emotional intensity (1-10) based on language strength and conversation buildup
+5. **Contextual Analysis**: Explain how conversation history influenced your detection
+6. **Emotional Trajectory**: Describe how emotions have evolved throughout the conversation
+7. **Conversation Sentiment**: Assess overall sentiment trend across the entire conversation
 
 Key considerations:
 - If the current message is ambiguous (e.g., "okay", "fine", "whatever"), rely heavily on conversation history
