@@ -17,8 +17,10 @@ import json
 import asyncio
 import base64
 import warnings
+from contextlib import asynccontextmanager
 
 from pathlib import Path
+from api.router import router
 from dotenv import load_dotenv
 
 from google.genai.types import (
@@ -154,7 +156,33 @@ async def client_to_agent_messaging(websocket, live_request_queue):
 # FastAPI web app
 #
 
-app = FastAPI()
+from beanie import init_beanie
+from motor.motor_asyncio import AsyncIOMotorClient
+from models import User, Session, Message, Memory
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Initialize database connection on app startup"""
+    # Startup
+    db_client = AsyncIOMotorClient(
+        os.getenv("MONGO_CONNECTION_STRING"),
+        tls=True,
+        tlsAllowInvalidCertificates=False,
+        serverSelectionTimeoutMS=5000
+    ).Jane
+    await init_beanie(database=db_client, document_models=[User, Session, Message, Memory])
+    print("✅ Database initialized")
+    
+    yield
+    
+    # Shutdown (if needed)
+    print("🔄 Shutting down database connection")
+
+
+app = FastAPI(lifespan=lifespan)
+
+app.include_router(router)
 
 STATIC_DIR = Path("static")
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
