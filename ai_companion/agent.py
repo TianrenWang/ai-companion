@@ -4,7 +4,8 @@ from ai_companion.sub_agents.emotion_agent.agent import emotionAgent
 from ai_companion.sub_agents.memory_agent.agent import memoryAgent
 from ai_companion.sub_agents.guardrails_agent.agent import guardrailAgent
 from ai_companion.tools import save_to_memory_tool
-
+from google.adk.tools.agent_tool import AgentTool
+from ai_companion.prompt import ROOT_AGENT_INSTR
 
 researchAgent = ParallelAgent(
     name="conversation_state_research_agent",
@@ -27,7 +28,9 @@ root_agent = Agent(
     name="root_agent",
     model="gemini-2.0-flash",
     description="The main orchestrating agent that coordinates the conversation workflow and manages memory storage",
-    instruction="Generate a response to the user's message using the sequential_workflow. Make sure to use the save_to_memory_tool whenever you need to save important information about the user for future conversations (personal details, preferences, important events, etc.).",
-    sub_agents=[sequential_workflow],
-    tools=[save_to_memory_tool],
+    instruction=ROOT_AGENT_INSTR,
+    tools=[
+        save_to_memory_tool,
+        AgentTool(agent=sequential_workflow, skip_summarization=True),
+    ],
 )

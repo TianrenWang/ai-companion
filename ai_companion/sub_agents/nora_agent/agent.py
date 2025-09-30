@@ -6,4 +6,5 @@ noraAgent = Agent(
     model="gemini-2.0-flash",
     description="",
     instruction=NORA_AGENT_INSTR,
+    output_key="nora_response",
 )
