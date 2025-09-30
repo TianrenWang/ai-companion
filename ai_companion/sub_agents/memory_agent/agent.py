@@ -26,6 +26,6 @@ memoryAgent = Agent(
     name="memoryAgent",
     model="gemini-2.0-flash",
     description="Memory agent that retrieves relevant conversation history",
-    instruction=RETREIVE_RELEVANT_MEMORY
+    instruction=RETREIVE_RELEVANT_MEMORY,
     tools = [fetch_relevant_memory_tool]
 )
